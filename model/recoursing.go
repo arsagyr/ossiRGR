@@ -30,7 +30,7 @@ func TrapzoidMethodStringReturn(formula string, a float64, b float64) string {
 			s = err.Error()
 		} else {
 			fmt.Printf("func(b) = %f \n", fxb)
-			s = strconv.FormatFloat(math.Abs(b-a)*(math.Abs(fxb)+math.Abs(fxa)/2), 'f', 6, 32)
+			s = strconv.FormatFloat(math.Abs(b-a)*(math.Abs(fxb)+math.Abs(fxa))/2, 'f', 6, 32)
 		}
 	}
 	return s
@@ -58,7 +58,7 @@ func TrapzoidMethod(formula string, a float64, b float64) float64 {
 			log.Println(err)
 		} else {
 			fmt.Printf("func(b) = %f \n", fxb)
-			f = math.Abs(b-a) * (math.Abs(fxb) + math.Abs(fxa)/2)
+			f = math.Abs(b-a) * (math.Abs(fxb) + math.Abs(fxa)) / 2
 		}
 	}
 	return f
