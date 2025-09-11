@@ -16,11 +16,16 @@ func Input(w http.ResponseWriter, r *http.Request) {
 
 		formula := r.FormValue("formula")
 		fmt.Printf("Formula is : %s \n", formula)
-		arguement := r.FormValue("arguement")
-		fmt.Printf("X is %s \n", arguement)
-
+		borderA := r.FormValue("borderA")
+		fmt.Printf("a is %s \n", borderA)
+		borderB := r.FormValue("borderB")
+		fmt.Printf("b is %s \n", borderB)
 		F.Formula = formula
-		F.Arguement, err = strconv.ParseFloat(arguement, 64)
+		F.BorderA, err = strconv.ParseFloat(borderA, 64)
+		if err != nil {
+			log.Println(err)
+		}
+		F.BorderB, err = strconv.ParseFloat(borderB, 64)
 		if err != nil {
 			log.Println(err)
 		}

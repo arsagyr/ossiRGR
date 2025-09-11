@@ -1,6 +1,7 @@
 package model
 
 type Function struct {
-	Arguement float64
-	Formula   string
+	BorderA float64
+	BorderB float64
+	Formula string
 }

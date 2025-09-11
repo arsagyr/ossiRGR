@@ -12,8 +12,9 @@ import (
 
 func runServer() {
 	f := model.Function{
-		Arguement: 0,
-		Formula:   "x",
+		BorderA: 0,
+		BorderB: 1,
+		Formula: "x",
 	}
 
 	handlers.F = &f
