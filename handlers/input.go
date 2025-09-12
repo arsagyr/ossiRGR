@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"rgr/model"
 	"strconv"
 )
 
@@ -20,6 +21,8 @@ func Input(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("a is %s \n", borderA)
 		borderB := r.FormValue("borderB")
 		fmt.Printf("b is %s \n", borderB)
+		points := r.FormValue("points")
+		fmt.Printf("Number of points is %s \n", points)
 		F.Formula = formula
 		F.BorderA, err = strconv.ParseFloat(borderA, 64)
 		if err != nil {
@@ -29,7 +32,11 @@ func Input(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Println(err)
 		}
-
+		n, err := strconv.Atoi(points)
+		if err != nil {
+			log.Println(err)
+		}
+		model.PointNumbers = &n
 		http.Redirect(w, r, "/output", 301)
 	} else {
 		http.ServeFile(w, r, "static/templates/input.html")

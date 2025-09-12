@@ -16,6 +16,8 @@ func runServer() {
 		BorderB: 1,
 		Formula: "x",
 	}
+	pointnumber := 1
+	model.PointNumbers = &pointnumber
 
 	handlers.F = &f
 

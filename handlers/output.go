@@ -9,9 +9,9 @@ import (
 )
 
 func Output(w http.ResponseWriter, r *http.Request) {
-	var s string = model.TrapzoidMethodStringReturn(F.Formula, F.BorderA, F.BorderB)
+	var s string = model.IntrgrateString(F.Formula, F.BorderA, F.BorderB)
 
-	fmt.Println(s)
+	fmt.Printf("Answer is %s \n", s)
 
 	data := ViewData{
 		Title: "Ответ ",

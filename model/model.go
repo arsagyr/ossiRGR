@@ -10,7 +10,6 @@ import (
 func EvaluateExpression(expression string, vars map[string]interface{}) (float64, error) {
 
 	coef := expr.Env(vars)
-
 	sin := expr.Function(
 		"sin",
 		func(params ...any) (any, error) {
