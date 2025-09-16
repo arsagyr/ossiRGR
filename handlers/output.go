@@ -9,8 +9,10 @@ import (
 )
 
 func Output(w http.ResponseWriter, r *http.Request) {
-	var s string = model.IntrgrateString(F.Formula, F.BorderA, F.BorderB)
-
+	var s string = model.IntrgrateTrapzoidString(F.Formula, F.BorderA, F.BorderB)
+	// model.IntrgrateString(F.Formula, F.BorderA, F.BorderB)
+	// var s0 string = model.IntrgrateTrapzoidString(F.Formula, F.BorderA, F.BorderB)
+	// s = s + " | " + s0
 	fmt.Printf("Answer is %s \n", s)
 
 	data := ViewData{

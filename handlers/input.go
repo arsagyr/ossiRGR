@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"log"
+	"math"
 	"net/http"
 	"rgr/model"
 	"strconv"
@@ -32,10 +33,11 @@ func Input(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Println(err)
 		}
-		n, err := strconv.Atoi(points)
+		m, err := strconv.Atoi(points)
 		if err != nil {
 			log.Println(err)
 		}
+		n := uint(math.Abs(float64(m)))
 		model.PointNumbers = &n
 		http.Redirect(w, r, "/output", 301)
 	} else {
