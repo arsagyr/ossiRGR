@@ -115,23 +115,29 @@ func IntrgrateTrapzoid(formula string, a float64, b float64) (float64, error) {
 	var fx0 float64 = 0
 	var fxh float64 = 0
 	var err error
-
+	h := math.Abs(b-a) / float64(*PointNumbers-1)
 	x0 := a
 	vars := map[string]interface{}{
-		"x":  x0,
+		"x":  a,
 		"pi": 3.14159265359,
 		"E":  2.71828182845,
 	}
 	fx0, err = EvaluateExpression(formula, vars)
-
-	h := math.Abs(b-a) / float64(*PointNumbers-1)
-
+	if err != nil {
+		return 0, err
+	}
+	s += fx0 / 2
+	vars = map[string]interface{}{
+		"x": b - h,
+	}
+	fx0, err = EvaluateExpression(formula, vars)
 	if err != nil {
 		log.Println(err)
 		return 0, err
 	}
+	s += fx0 / 2
 	var i uint
-	for i = 1; i < *PointNumbers; i++ {
+	for i = 1; i < *PointNumbers-1; i++ {
 		xh := x0 + h
 		fmt.Printf("x%d =%f\n", i, x0)
 		vars = map[string]interface{}{
@@ -140,13 +146,15 @@ func IntrgrateTrapzoid(formula string, a float64, b float64) (float64, error) {
 		fxh, err = EvaluateExpression(formula, vars)
 		fmt.Printf("fx%d =%f\n", i, fxh)
 		if err != nil {
+			s = 0
 			log.Println(err)
 			break
 		}
-		s = s + (h * (math.Abs(fxh) + math.Abs(fx0)) / 2)
+		s = s + math.Abs(fxh)
 		x0 = xh
 		fx0 = fxh
 	}
+	s = s * h
 	return s, err
 }
 
