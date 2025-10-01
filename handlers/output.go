@@ -14,12 +14,10 @@ func Output(w http.ResponseWriter, r *http.Request) {
 	// var s0 string = model.IntrgrateTrapzoidString(F.Formula, F.BorderA, F.BorderB)
 	// s = s + " | " + s0
 	fmt.Printf("Answer is %s \n", s)
-
 	data := ViewData{
 		Title: "Ответ ",
 		Text:  s,
 	}
-
 	tmpl, _ := template.ParseFiles("static/templates/index.html")
 	tmpl.Execute(w, data)
 }

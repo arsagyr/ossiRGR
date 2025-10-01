@@ -17,7 +17,7 @@ func runServer() {
 		Formula: "x",
 	}
 	var pointnumber uint = 1
-	model.PointNumbers = &pointnumber
+	model.TrapzoidNumber = &pointnumber
 
 	handlers.F = &f
 

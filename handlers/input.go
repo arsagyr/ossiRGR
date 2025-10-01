@@ -22,8 +22,8 @@ func Input(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("a is %s \n", borderA)
 		borderB := r.FormValue("borderB")
 		fmt.Printf("b is %s \n", borderB)
-		points := r.FormValue("points")
-		fmt.Printf("Number of points is %s \n", points)
+		trapzoids := r.FormValue("trapzoids")
+		fmt.Printf("Number of traps... trapzoids is %s \n", trapzoids)
 		F.Formula = formula
 		F.BorderA, err = strconv.ParseFloat(borderA, 64)
 		if err != nil {
@@ -33,13 +33,22 @@ func Input(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Println(err)
 		}
-		m, err := strconv.Atoi(points)
+		m, err := strconv.Atoi(trapzoids)
 		if err != nil {
 			log.Println(err)
 		}
 		n := uint(math.Abs(float64(m)))
-		model.PointNumbers = &n
-		http.Redirect(w, r, "/output", 301)
+		if F.BorderA != F.BorderB {
+			if n != 0 {
+				model.TrapzoidNumber = &n
+				http.Redirect(w, r, "/output", 301)
+			} else {
+				http.ServeFile(w, r, "static/templates/input.html")
+			}
+		} else {
+			http.ServeFile(w, r, "static/templates/input.html")
+		}
+
 	} else {
 		http.ServeFile(w, r, "static/templates/input.html")
 	}

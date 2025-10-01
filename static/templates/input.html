@@ -6,8 +6,9 @@
         <title>Ввод</title>
         <link rel="stylesheet" type="text/css" href="static/css/styles.css">
     </head>
+    <header></header>
     <body>
-        <form method="POST">
+        <form method="POST" id="send">
             <table class="inputTable">
                 <thead>Ввести данные функции</thead>
                 <tbody>
@@ -18,20 +19,33 @@
                     <tr>
                         <td>Ввод</td>
                         <td><input type="text" name="formula" required /></td>
-                        <td><input type="number" step="0.0001" name="borderA" pattern="[0-9]{0,}" required /></td>
-                        <td><input type="number" step="0.0001" name="borderB" pattern="[0-9]{0,}" required /></td>
+                        <td><input type="number" step="0.00001" id="borderA" name="borderA" pattern="[0-9]{0,}" required /></td>
+                        <td><input type="number" step="0.00001" id="borderB" name="borderB" pattern="[0-9]{0,}" required /></td>
                     </tr>
                     <tr>
                         <td>Количество</td>
-                        <td><input value = "2" type="number" step="1" name="points" pattern="[0-9]{0,}" required /></td>
+                        <td><input value = "1" type="number" step="1" id="trapnum" name="trapzoids" pattern="[0-9]{0,}" required /></td>
                     </tr>
                 </tbody>
             </table>
             <table>
-                <tr><button type="submit">Отправить</button></tr>
-                <!-- <tr><input type="button" onclick="location.href='/output';" value="Отправить" /></tr> -->
+                <tr><button type="submit" onclick="checkTraps()">Отправить</button></tr>
                 <tr><input type="button" onclick="location.href='/';" value="Вернуться" /></tr>
             </table>
         </form>
     </body>
+    <footer></footer>
+    <script>
+        function checkTraps()
+        {
+            if(document.getElementById("borderA").value == document.getElementById("borderB").value){
+				alert('Некорректный ввод границ: введите разные числа');
+			}
+            if(document.getElementById("trapnum").value<1){
+				alert('Некорректный ввод числа трапеций: введите натуральное число');
+			}else{
+                document.getElementById("send").submit();
+            }
+        }
+    </script>
 </html>
