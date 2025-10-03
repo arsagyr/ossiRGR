@@ -26,12 +26,6 @@ func runServer() {
 	router.HandleFunc("/input", handlers.Input)
 	router.HandleFunc("/output", handlers.Output)
 
-	//не работают стили - проверить надобнА!
-	rmux := http.NewServeMux()
-	fileServer := http.FileServer(http.Dir("./static/"))
-	rmux.Handle("/static/", http.StripPrefix("/static", fileServer))
-	//
-
 	http.Handle("/", router)
 	fmt.Println("Server is listening...")
 

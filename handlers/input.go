@@ -23,7 +23,7 @@ func Input(w http.ResponseWriter, r *http.Request) {
 		borderB := r.FormValue("borderB")
 		fmt.Printf("b is %s \n", borderB)
 		trapzoids := r.FormValue("trapzoids")
-		fmt.Printf("Number of traps... trapzoids is %s \n", trapzoids)
+		fmt.Printf("Number of trapzoids is %s \n", trapzoids)
 		F.Formula = formula
 		F.BorderA, err = strconv.ParseFloat(borderA, 64)
 		if err != nil {

@@ -8,8 +8,8 @@ import (
 )
 
 func EvaluateExpression(expression string, vars map[string]interface{}) (float64, error) {
-
-	coef := expr.Env(vars)
+	coef := expr.Env(vars) // Принимаем значения
+	//Определяем интегрируемые функции
 	sin := expr.Function(
 		"sin",
 		func(params ...any) (any, error) {
@@ -131,7 +131,6 @@ func EvaluateExpression(expression string, vars map[string]interface{}) (float64
 	if err != nil {
 		return 0, fmt.Errorf("ошибка выполнения: %v", err)
 	}
-
 	// Приводим результат к float64
 	switch result := output.(type) {
 	case float64:
